@@ -25,9 +25,7 @@ exports.addProduct=async(req,res)=>{
 
 exports.getProduct=async(req,res)=>{
     try {
-        const product=await products.find()
-        console.log(product);
-        
+        const product=await products.find()        
         return res.json({success:true,product})
     } catch (error) {
         return res.json({success:false,message:error.message}) 
@@ -70,3 +68,15 @@ exports.updateProduct = async (req, res) => {
         return res.status(500).json({ success: false, message: error.message });
     }
 };
+
+exports.searchProduct=async(req,res)=>{
+    try {
+        const keyword=req.query.search
+        const result=await products.find({name:{$regex:keyword,$options:'si'}})
+        return res.json({success:true,result})
+        
+    } catch (error) {
+        return res.json({ success: false, message: error.message });
+
+    }
+}

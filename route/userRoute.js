@@ -15,6 +15,7 @@ router.post('/add-product',jwtMiddle,upload.single('image'),productController.ad
 router.get('/get-product',jwtMiddle,productController.getProduct)
 router.delete('/remove-product/:id',jwtMiddle,productController.removeProduct)
 router.put('/update-product/:id',jwtMiddle,upload.single('image'),productController.updateProduct)
+router.get('/search-product',jwtMiddle,productController.searchProduct)
 
 
 module.exports=router
